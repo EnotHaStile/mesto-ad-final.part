@@ -1,72 +1,72 @@
-const config = {
+const apiRestCfgEx = {
   baseUrl: "https://mesto.nomoreparties.co/v1/apf-cohort-203",
   headers: {
-    authorization: "6af0b8c2-1e68-403a-8a4c-3126ef974f26",
+    authorization: "89d81260-9a78-43b4-b12f-9d21cec1be1d",
     "Content-Type": "application/json",
   },
 };
 
 /* Проверяем, успешно ли выполнен запрос, и отклоняем промис в случае ошибки. */
-const getResponseData = (res) => {
+const unwrapFetchJsonEx = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
-export const getUserInfo = () => {
-  return fetch(`${config.baseUrl}/users/me`, { // Запрос к API-серверу
-    headers: config.headers, // Подставляем заголовки
-  }).then(getResponseData);  // Проверяем успешность выполнения запроса
+export const getUserInfoEx = () => {
+  return fetch(`${apiRestCfgEx.baseUrl}/users/me`, { // Запрос к API-серверу
+    headers: apiRestCfgEx.headers, // Подставляем заголовки
+  }).then(unwrapFetchJsonEx);  // Проверяем успешность выполнения запроса
 };
 
-export const getCardList = () => {
-    return fetch(`${config.baseUrl}/cards`, { // Запрос к API-серверу
-    headers: config.headers, // Подставляем заголовки
-  }).then(getResponseData);  // Проверяем успешность выполнения запроса
+export const getCardListEx = () => {
+    return fetch(`${apiRestCfgEx.baseUrl}/cards`, { // Запрос к API-серверу
+    headers: apiRestCfgEx.headers, // Подставляем заголовки
+  }).then(unwrapFetchJsonEx);  // Проверяем успешность выполнения запроса
 };
 
-export const setUserInfo = ({ name, about }) => {
-  return fetch(`${config.baseUrl}/users/me`, {
+export const setUserInfoEx = ({ name, about }) => {
+  return fetch(`${apiRestCfgEx.baseUrl}/users/me`, {
     method: "PATCH",
-    headers: config.headers,
+    headers: apiRestCfgEx.headers,
     body: JSON.stringify({
       name,
       about,
     }),
-  }).then(getResponseData);
+  }).then(unwrapFetchJsonEx);
 };
 
-export const setUserAvatar = ({ avatar }) => {
-  return fetch(`${config.baseUrl}/users/me`, {
+export const setUserAvatarEx = ({ avatar }) => {
+  return fetch(`${apiRestCfgEx.baseUrl}/users/me/avatar`, {
     method: "PATCH",
-    headers: config.headers,
+    headers: apiRestCfgEx.headers,
     body: JSON.stringify({
-      avatar
+      avatar,
     }),
-  }).then(getResponseData);
+  }).then(unwrapFetchJsonEx);
 };
 
-export const addNewCard = ({ name, link }) => {
-  return fetch(`${config.baseUrl}/cards`, {
+export const addNewCardEx = ({ name, link }) => {
+  return fetch(`${apiRestCfgEx.baseUrl}/cards`, {
     method: "POST",
-    headers: config.headers,
+    headers: apiRestCfgEx.headers,
     body: JSON.stringify({
         name,
         link
     }),
-  }).then(getResponseData);
+  }).then(unwrapFetchJsonEx);
 };
 
-export const deleteCardApi = ({cardId}) => {
+export const deleteCardApiEx = ({cardId}) => {
     return fetch(
-      `${config.baseUrl}/cards/${cardId}`, {
+      `${apiRestCfgEx.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: config.headers,
+      headers: apiRestCfgEx.headers,
     })
-    .then(getResponseData)
+    .then(unwrapFetchJsonEx)
 };
 
-export const changeLikeCardStatus = (cardID, isLiked) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardID}`, {
+export const changeLikeCardStatusEx = (cardID, isLiked) => {
+  return fetch(`${apiRestCfgEx.baseUrl}/cards/likes/${cardID}`, {
     method: isLiked ?  "DELETE" : "PUT",
-    headers: config.headers,
-  }).then((res) => getResponseData(res));
+    headers: apiRestCfgEx.headers,
+  }).then((res) => unwrapFetchJsonEx(res));
 };

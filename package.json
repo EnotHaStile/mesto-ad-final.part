@@ -1,5 +1,5 @@
 {
-  "name": "mesto-ad",
+  "name": "mesto-ad-final.part",
   "version": "1.0.0",
   "description": "Стартовый набор для выполнения проектной работы Место",
   "main": "index.js",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EnotHaStile/mesto-ad.git"
+    "url": "git+https://github.com/EnotHaStile/mesto-ad-final.part.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/EnotHaStile/mesto-ad/issues"
+    "url": "https://github.com/EnotHaStile/mesto-ad-final.part/issues"
   },
-  "homepage": "https://github.com/EnotHaStile/mesto-ad#readme",
+  "homepage": "https://github.com/EnotHaStile/mesto-ad-final.part#readme",
   "devDependencies": {
     "vite": "^7.3.1"
   }

@@ -1,24 +1,24 @@
-export const likeCard = (likeButton) => {
+export const toggleLikeUiEx = (likeButton) => {
   likeButton.classList.toggle("card__like-button_is-active");
 };
 
-export const deleteCard = (cardElement) => {
+export const removeCardDomEx = (cardElement) => {
   cardElement.remove();
 };
 
-const getTemplate = () => {
+const cloneCardTplEx = () => {
   return document
     .getElementById("card-template")
     .content.querySelector(".card")
     .cloneNode(true);
 };
 
-export const createCardElement = (
+export const buildCardDomEx = (
   data,
-  { onPreviewPicture, onLikeIcon, onDeleteCard, onInfoIcon },
+  { onPreviewPicEx, onLikeBtnEx, onCardRemoveEx, onCardInfoEx },
   currentUserID
 ) => {
-  const cardElement = getTemplate();
+  const cardElement = cloneCardTplEx();
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__control-button_type_delete");
   const cardImage = cardElement.querySelector(".card__image");
@@ -36,20 +36,20 @@ export const createCardElement = (
     deleteButton.remove();
   }
 
-  if (onLikeIcon) {
-    likeButton.addEventListener("click", () => onLikeIcon(data._id, cardElement, likeButton));
+  if (onLikeBtnEx) {
+    likeButton.addEventListener("click", () => onLikeBtnEx(data._id, cardElement, likeButton));
   }
 
-  if (onDeleteCard && data.owner._id === currentUserID) {
-    deleteButton.addEventListener("click", () => onDeleteCard(data._id, cardElement));
+  if (onCardRemoveEx && data.owner._id === currentUserID) {
+    deleteButton.addEventListener("click", () => onCardRemoveEx(data._id, cardElement));
   }
 
-  if (onPreviewPicture) {
-    cardImage.addEventListener("click", () => onPreviewPicture({name: data.name, link: data.link}));
+  if (onPreviewPicEx) {
+    cardImage.addEventListener("click", () => onPreviewPicEx({name: data.name, link: data.link}));
   }
 
-  if (onInfoIcon) {
-    infoButton.addEventListener("click", () => onInfoIcon(data._id));
+  if (onCardInfoEx) {
+    infoButton.addEventListener("click", () => onCardInfoEx(data._id));
   }
 
   return cardElement;
